@@ -76,9 +76,9 @@ int main() {
     encryptWithPSK(pubkey_bin, pubkey_len, (unsigned char*)pre_shared.c_str(), ciphertext, iv, ciphertext_len);
 
     // TODO: send the iv to the server
-    
+    send(clientSocket, iv, EVP_MAX_IV_LENGTH, 0);
     // TODO: send the ciphertext to the server
-    
+    send(clientSocket, ciphertext, ciphertext_len, 0);
 
     std::cout << "Encrypted public key sent to server." << std::endl;
 
@@ -88,11 +88,13 @@ int main() {
     int bytesRead;
 
     // TODO: receive the IV from the server
+    bytesRead = recv(clientSocket, IV, EVP_MAX_IV_LENGTH, 0);
     
     
     unsigned char encryptedBuffer[BUFFER_SIZE];
     // TODO: receive the encrypted message from the server and store it in bytesRead
-    
+    bytesRead = recv(clientSocket, encryptedBuffer, BUFFER_SIZE, 0);
+
     unsigned char decryptedBuffer[BUFFER_SIZE];
     int decryptedLen;
 
@@ -111,7 +113,7 @@ int main() {
 
     // TODO: compute the shared secret and store it in secret_size
     // HINT: using DH_compute_key()
-    
+    DH_compute_key(sharedSecret, serverPubKey, dh);
 
     std::cout << "Shared Secret (Hex): ";
     for (int i = 0; i < secret_size; i++) {
