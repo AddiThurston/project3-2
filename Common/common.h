@@ -7,6 +7,7 @@
 #include <sys/socket.h>
 #include <openssl/evp.h>
 #include <string>
+#include <cstring>
 
 constexpr int BUFFER_SIZE = 1024;
 constexpr int PORT = 8080;

@@ -16,7 +16,7 @@ void handleClient(int clientSocket) {
     
     unsigned char encryptedBuffer[BUFFER_SIZE];
     // TODO: read the encrypted message from the client and store it in bytesRead
-    bytesRead = recv(clientSocket, encryptedBuffer, BUFER_SIZE, 0);
+    bytesRead = recv(clientSocket, encryptedBuffer, BUFFER_SIZE, 0);
 
     unsigned char decryptedBuffer[BUFFER_SIZE];
     int decryptedLen;
@@ -97,7 +97,7 @@ void handleClient(int clientSocket) {
 
     // TODO: compute the shared secret and store it in secret_size
     // HINT: using DH_compute_key()
-    DH_compute_key(sharedSecret, serverPubKey, privkey);
+    DH_compute_key(sharedSecret, clientPubKey, privkey);
 
     std::cout << "Shared Secret (Hex): ";
     for (int i = 0; i < secret_size; i++) {
