@@ -12,11 +12,11 @@ void handleClient(int clientSocket) {
     int bytesRead;
 
     // TODO: read the iv from the client
+    recv(clientSocket, iv, EVP_MAX_IV_LENGTH, 0);
     
-
     unsigned char encryptedBuffer[BUFFER_SIZE];
     // TODO: read the encrypted message from the client and store it in bytesRead
-   
+    bytesRead = recv(clientSocket, encryptedBuffer, BUFER_SIZE, 0);
 
     unsigned char decryptedBuffer[BUFFER_SIZE];
     int decryptedLen;
