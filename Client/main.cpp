@@ -29,15 +29,20 @@ int main() {
     // TODO: Call DH_get_2048_256() to generate DH parameters
     // You should use that method, so the server and client will use the same p and g
     // and store it in privkey. Then call handleErrors()
-    
+    DH *dh = DH_get_2048_256();
+    if (dh == NULL) {
+        handleErrors();
+    }
     
     // TODO: Write a method to generate the public and private key pair
-    
+    if (!DH_generate_key(dh)) {
+        handleErrors();
+    }
     
     const BIGNUM *pubkey = NULL;
     // TODO: Write a method to extract the public key from privkey and store it in pubkey
     // HINT: DH_get0_pub_key()
-    
+    pubkey = DH_get0_pub_key(dh);
 
     if (pubkey == NULL) {
         printf("Error: DH public key is NULL\n");
