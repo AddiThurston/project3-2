@@ -84,7 +84,7 @@ void handleClient(int clientSocket) {
     encryptWithPSK(pubkey_bin, pubkey_len, (unsigned char*)pre_shared.c_str(), ciphertext, IV, ciphertext_len);
     
     // TODO: send the iv to the client
-    send(clientSocket, iv, EVP_MAX_IV_LENGTH, 0);
+    send(clientSocket, IV, EVP_MAX_IV_LENGTH, 0);
 
     // TODO: send the ciphertext to the client
     send(clientSocket, ciphertext, ciphertext_len, 0);
@@ -97,7 +97,7 @@ void handleClient(int clientSocket) {
 
     // TODO: compute the shared secret and store it in secret_size
     // HINT: using DH_compute_key()
-    DH_compute_key(sharedSecret, clientPubKey, privkey);
+    secret_size = DH_compute_key(sharedSecret, clientPubKey, privkey);
 
     std::cout << "Shared Secret (Hex): ";
     for (int i = 0; i < secret_size; i++) {

@@ -113,7 +113,7 @@ int main() {
 
     // TODO: compute the shared secret and store it in secret_size
     // HINT: using DH_compute_key()
-    DH_compute_key(sharedSecret, serverPubKey, privkey);
+    secret_size = DH_compute_key(sharedSecret, serverPubKey, privkey);
 
     std::cout << "Shared Secret (Hex): ";
     for (int i = 0; i < secret_size; i++) {
