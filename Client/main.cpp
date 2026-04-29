@@ -1,3 +1,4 @@
+// Addison Thurston & William Kraus
 #include "client.h"
 #include <iostream>
 #include <string>

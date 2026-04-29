@@ -1,3 +1,4 @@
+// Addison Thurston & William Kraus
 #include "common.h"
 #include <iostream>
 #include <cstring>

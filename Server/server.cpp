@@ -1,3 +1,4 @@
+// Addison Thurston & William Kraus
 #include "server.h"
 #include <iomanip>
 #include <openssl/dh.h>
